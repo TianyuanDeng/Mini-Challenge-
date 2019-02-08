@@ -1,38 +1,25 @@
-//: A UIKit based Playground for presenting user interface
-  
-import UIKit
-import PlaygroundSupport
+ import UIKit
 
-class MyViewController : UIViewController {
-    enum StatusCode {
-        case success
-        case unauthorized
-        case forbidden
-        case notFound
-    }
-    
-    func prettyPrint(_: StatusCode) -> String {
-        let aStatus = StatusCode.success
-        
-        switch aStatus {
-        case .success: print("200: Success")
-        default:()
-        }
-    }
-    
-    
-    override func loadView() {
-        let view = UIView()
-        view.backgroundColor = .white
+ enum StatusCode {
+    case success
+    case unauthorized
+    case forbidden
+    case notFound
+ }
 
-        let label = UILabel()
-        label.frame = CGRect(x: 150, y: 200, width: 200, height: 20)
-        label.text = "Hello World!"
-        label.textColor = .black
-        
-        view.addSubview(label)
-        self.view = view
+ func prettyPrint(value : StatusCode) -> String {
+    
+    switch value {
+        case .success:
+            return "200: Success"
+        case .unauthorized:
+            return "401: Unathorized"
+        case .forbidden:
+            return "403: Forbidden"
+        case .notFound:
+            return "404: Not Found"
     }
-}
-// Present the view controller in the Live View window
-PlaygroundPage.current.liveView = MyViewController()
+    
+ }
+ 
+// print(prettyPrint(value: StatusCode.success))
